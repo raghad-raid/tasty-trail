@@ -1,0 +1,26 @@
+<div class="nav-section">
+  <div class="nav-content">
+    <div class="nav-left">
+      <span>{{ totalRecipes }} Recipes</span>
+      <span class="nav-item">PAGE</span>
+      <div class="page-numbers">
+
+        @for (page of pages; track page) {
+          <a 
+            (click)="onPageChange(page); $event.preventDefault()"
+            href="#"
+            class="page-num"
+            [class.active]="currentPage === page">
+            {{ page }}
+          </a>
+        }
+
+        <a class="page-num"
+          (click)="onPageChange(currentPage + 1); $event.preventDefault()" href="#">
+          &gt;&gt;
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

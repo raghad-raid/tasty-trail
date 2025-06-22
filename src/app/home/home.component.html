@@ -1,0 +1,15 @@
+<div class="app-container">
+  <app-hero 
+    [(searchQuery)]="searchQuery" 
+    (search)="onSearch()"
+  ></app-hero>
+
+  <app-navigation
+    [totalRecipes]="totalRecipes"
+    [currentPage]="currentPage"
+    [maxPages]="maxPages"
+    (pageChange)="onPageChange($event)"
+  ></app-navigation>
+
+  <app-recipe-grid [recipes]="paginatedRecipes"></app-recipe-grid>
+</div>

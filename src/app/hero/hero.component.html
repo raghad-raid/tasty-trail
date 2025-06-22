@@ -1,0 +1,17 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Never Miss A Delicious Dish</h1>
+    <div class="search-container">
+      <div class="search-box">
+        <input 
+          type="text" 
+          placeholder="Explore delicious dishes"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onInputChange($event)"
+          (keyup.enter)="onSearch()"
+        >
+        <button (click)="onSearch()">🍴</button>
+      </div>
+    </div>
+  </div>
+</section>

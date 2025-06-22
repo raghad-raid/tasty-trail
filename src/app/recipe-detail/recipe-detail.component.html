@@ -1,0 +1,29 @@
+<div class="recipe-detail-container">
+  <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+
+  <div class="recipe-top-row">
+    <div class="recipe-image">
+      <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" loading="lazy" />
+    </div>
+
+    <div class="recipe-item-row">
+      <p class="recipe-item"><strong>Category:</strong> {{ recipe.strCategory }}</p>
+      <p class="recipe-item"><strong>Area:</strong> {{ recipe.strArea }}</p>
+    </div>
+  </div>
+
+  <h3 class="instructions-title">Instructions</h3>
+  <div class="instructions-wrapper">
+    <div *ngFor="let step of getInstructionSteps(); let i = index" class="instruction-step">
+      <div class="step-label">Step {{ i + 1 }}</div>
+      <p class="step-text">{{ step }}</p>
+    </div>
+  </div>
+
+  <h3 class="ingredients-title">Ingredients</h3>
+  <ul class="ingredients-list">
+    <li *ngFor="let ing of getIngredients()">{{ ing }}</li>
+  </ul>
+
+  <a class="back-button" (click)="goBack()" >← Back to Recipes</a>
+</div>
