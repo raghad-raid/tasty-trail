@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MealService } from '../meal.service';
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   paginatedRecipes: any[] = [];
 
   constructor(private mealService: MealService) {}
-
+  @ViewChild('recipesSection') recipesSection!: ElementRef;
   ngOnInit(): void {
     this.fetchAllMeals();
   }
@@ -79,6 +79,13 @@ export class HomeComponent implements OnInit {
         this.totalRecipes = this.recipes.length;
         this.currentPage = 1;
         this.paginateRecipes();
+
+        setTimeout(() => {
+          if (this.recipesSection) {
+            this.recipesSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+         }
+        }, 100);
+
       } else {
         this.recipes = [];
         this.totalRecipes = 0;
@@ -86,4 +93,5 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  
 }

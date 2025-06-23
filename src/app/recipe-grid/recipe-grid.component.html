@@ -4,10 +4,16 @@
       <div 
         class="recipe-card" 
         [routerLink]="['/recipe', recipe.id]"
-        [id]="'recipe-' + recipe.id"
-      >
+        [id]="'recipe-' + recipe.id">
+
+        <div 
+          class="favorite-icon"
+          (click)="toggleFavorite(recipe, $event)">
+          {{ isFavorited(recipe.id) ? '★' : '☆' }}
+        </div>
+
         <div class="recipe-image">
-          <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" loading="lazy" />
+          <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" loading="eager" />
         </div>
         <div class="recipe-content">
           <h3 class="recipe-title">{{ recipe.title }}</h3>

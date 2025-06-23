@@ -8,15 +8,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+  cursor: pointer;
 }
 
 .recipe-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
+  position: relative;
 }
 
 .recipe-card:hover {
@@ -24,6 +20,23 @@
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
+.favorite-icon {
+  position:absolute;
+  margin-top: 222px;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #d93f6a;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s;
+}
+
+.favorite-icon:hover {
+ transform: scale(1.2);
+} 
 .recipe-image {
   height: 200px;
   overflow: hidden;

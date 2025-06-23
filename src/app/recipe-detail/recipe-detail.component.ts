@@ -25,10 +25,14 @@ export class RecipeDetailComponent implements OnInit {
     window.scrollTo(0, 0);
     this.recipeId = this.route.snapshot.paramMap.get('id');
     if (this.recipeId) {
-      this.mealService.getMealById(this.recipeId).subscribe(res => {
-        this.recipe = res.meals ? res.meals[0] : null;
-      });
-    }
+  this.mealService.getMealById(this.recipeId).subscribe(res => {
+    this.recipe = res.meals ? res.meals[0] : null;
+
+    // Make sure idMeal matches the id in my favorites
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    this.isFavorited = favorites.some((fav: any) => fav.id === this.recipe.idMeal);
+  });
+}
   }
 
   getIngredients(): string[] {
@@ -54,4 +58,30 @@ export class RecipeDetailComponent implements OnInit {
     this.location.back();
     setTimeout(() => window.scrollTo(0, 0), 100);
   }
+
+ isFavorited = false;
+
+  toggleFavorite(): void {
+  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const recipeId = this.recipe.idMeal;
+
+  const index = favorites.findIndex((fav: any) => fav.id === recipeId);
+
+  if (index !== -1) {
+    
+    favorites.splice(index, 1);
+    this.isFavorited = false;
+  } else {
+    
+    favorites.push({
+      id: recipeId,
+      title: this.recipe.strMeal
+    });
+    this.isFavorited = true;
+  }
+
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+
 }

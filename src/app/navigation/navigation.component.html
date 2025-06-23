@@ -1,9 +1,37 @@
 <div class="nav-section">
   <div class="nav-content">
+
+    <div class="favorites-toggle">
+      <button class="fav-toggle-btn" (click)="toggleFavorites()">★ My Favourite</button>
+
+      @if (showFavorites) {
+        <div class="favorites-dropdown">
+          <h4>Favourite Recipes</h4>
+
+          @if (favoriteRecipes.length > 0) {
+            <ul class="favorites-list">
+              <li *ngFor="let fav of favoriteRecipes">
+                <a [routerLink]="['/recipe', fav.id]">{{ fav.title }}</a>
+              </li>
+            </ul>
+          } @else {
+            <p class="no-favorites-message">No Favourite recipes yet</p>
+          }
+
+        </div>
+      }
+    </div>
+
     <div class="nav-left">
       <span>{{ totalRecipes }} Recipes</span>
       <span class="nav-item">PAGE</span>
       <div class="page-numbers">
+
+        <a class="page-num"
+           (click)="onPageChange(currentPage - 1); $event.preventDefault()"
+           href="#">
+          &lt;&lt;
+        </a>
 
         @for (page of pages; track page) {
           <a 
@@ -16,7 +44,8 @@
         }
 
         <a class="page-num"
-          (click)="onPageChange(currentPage + 1); $event.preventDefault()" href="#">
+           (click)="onPageChange(currentPage + 1); $event.preventDefault()"
+           href="#">
           &gt;&gt;
         </a>
 

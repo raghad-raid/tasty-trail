@@ -1,9 +1,18 @@
-<div class="recipe-detail-container">
-  <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+<div *ngIf="recipe as recipe" class="recipe-detail-container">      <!-- Show all details only if the recipe exists-->
 
+  <div class="recipe-title-row">
+    <a class="back-button" (click)="goBack()" ><i class="fa-solid fa-arrow-left"></i> Back to Recipes</a>
+
+    <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+
+    <button class="fav-btn" (click)="toggleFavorite()">
+      {{ isFavorited ? '★ Favourited' : '☆ Add to my Favourite' }}
+    </button>
+  </div>
+    
   <div class="recipe-top-row">
     <div class="recipe-image">
-      <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" loading="lazy" />
+      <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" loading="eager" />
     </div>
 
     <div class="recipe-item-row">
@@ -25,5 +34,8 @@
     <li *ngFor="let ing of getIngredients()">{{ ing }}</li>
   </ul>
 
-  <a class="back-button" (click)="goBack()" >← Back to Recipes</a>
+</div>
+
+<div *ngIf="!recipe">     <!-- Show all details only if the recipe exists-->
+  <p>Loading recipe details...</p>
 </div>
