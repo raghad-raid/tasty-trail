@@ -3,7 +3,7 @@
   <div class="recipe-title-row">
     <a class="back-button" (click)="goBack()" ><i class="fa-solid fa-arrow-left"></i> Back to Recipes</a>
 
-    <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+    <h1 class="recipe-title">{{ recipe?.strMeal }}</h1>
 
     <button class="fav-btn" (click)="toggleFavorite()">
       {{ isFavorited ? '★ Favourited' : '☆ Add to my Favourite' }}
@@ -12,12 +12,12 @@
     
   <div class="recipe-top-row">
     <div class="recipe-image">
-      <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" loading="eager" />
+      <img [src]="recipe?.strMealThumb" alt="{{ recipe?.strMeal }}" loading="eager" />
     </div>
 
     <div class="recipe-item-row">
-      <p class="recipe-item"><strong>Category:</strong> {{ recipe.strCategory }}</p>
-      <p class="recipe-item"><strong>Area:</strong> {{ recipe.strArea }}</p>
+      <p class="recipe-item"><strong>Category:</strong> {{ recipe?.strCategory }}</p>
+      <p class="recipe-item"><strong>Area:</strong> {{ recipe?.strArea }}</p>
     </div>
   </div>
 

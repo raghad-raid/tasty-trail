@@ -11,7 +11,7 @@
           @if (favoriteRecipes.length > 0) {
             <ul class="favorites-list">
               <li *ngFor="let fav of favoriteRecipes">
-                <a [routerLink]="['/recipe', fav.id]">{{ fav.title }}</a>
+                <a [routerLink]="['/recipe', fav.id]">{{ fav?.title }}</a>
               </li>
             </ul>
           } @else {
