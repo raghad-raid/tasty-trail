@@ -49,7 +49,7 @@ export class RecipeDetailComponent implements OnInit {
     if (!this.recipe?.strInstructions) return [];
 
     return this.recipe.strInstructions
-      .split(/\r?\n|\.\s+/)
+      .split(/(?:\r?\n|\s*\d+\.|\s*Step\s+\d+:?)/i)
       .map((step: string) => step.trim())
       .filter((step: string) => step.length > 0);
   }
